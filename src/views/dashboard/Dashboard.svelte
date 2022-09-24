@@ -1,1 +1,7 @@
-<h1>Dashboard</h1>
+<script>
+  import Layout from "../layout/Layout.svelte";
+</script>
+
+<Layout>
+  <h1>Dashboard</h1>
+</Layout>
