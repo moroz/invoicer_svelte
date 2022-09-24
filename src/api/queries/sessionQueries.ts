@@ -1,5 +1,6 @@
 import gql from "graphql-tag";
 import { query } from "svelte-apollo";
+import type { User } from "../interfaces/users";
 
 export const CURRENT_USER = gql`
   {
@@ -9,11 +10,6 @@ export const CURRENT_USER = gql`
     }
   }
 `;
-
-export interface User {
-  id: string;
-  email: string;
-}
 
 export interface CurrentUserQueryResult {
   currentUser: User | null;
