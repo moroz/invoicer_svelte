@@ -20,6 +20,7 @@
     "vite": "^3.1.0"
   },
   "dependencies": {
+    "bulma": "^0.9.4",
     "sass": "^1.55.0",
     "svelte-navigator": "^3.2.2"
   }
