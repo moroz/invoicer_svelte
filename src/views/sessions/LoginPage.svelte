@@ -4,7 +4,7 @@
     type SignInMutationVariables
   } from "@api/mutations/sessionMutations";
 
-  import { currentUserQuery } from "@api/queries/sessionQueries";
+  import { authStore } from "@api/queries/sessionQueries";
   import { useNavigate } from "svelte-navigator";
 
   let formState: SignInMutationVariables = {
@@ -12,12 +12,13 @@
     password: ""
   };
 
-  const user = currentUserQuery();
   const navigate = useNavigate();
-
   let loading = false;
-
   const mutate = signInMutation();
+
+  $: if (!$authStore.loading && $authStore.user) {
+    navigate("/");
+  }
 
   const onSubmit = async () => {
     try {

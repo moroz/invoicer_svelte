@@ -38,15 +38,8 @@ export const SIGN_OUT = gql`
 `;
 
 export const signOutMutation = () => {
-  return mutation(SIGN_OUT);
-};
-
-export const useSignOutMutation = () => {
-  const navigate = useNavigate();
-  const mutation = signOutMutation();
-
-  return async () => {
-    await signOutMutation();
-    navigate("/login");
-  };
+  return mutation(SIGN_OUT, {
+    refetchQueries: ["CurrentUser"],
+    awaitRefetchQueries: true
+  });
 };
