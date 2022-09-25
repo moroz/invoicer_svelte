@@ -15,10 +15,6 @@
   const user = currentUserQuery();
   const navigate = useNavigate();
 
-  $: if (!$user.loading && $user.data.currentUser) {
-    navigate("/");
-  }
-
   let loading = false;
 
   const mutate = signInMutation();
@@ -26,7 +22,10 @@
   const onSubmit = async () => {
     try {
       loading = true;
-      await mutate({ variables: formState });
+      const result = await mutate({ variables: formState });
+      if (result.data.signIn.success) {
+        navigate("/");
+      }
     } catch (e) {
       console.error(e);
     } finally {
